@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackFree.me - Take Control of Your Digital Footprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Base dark mode styles for elements that don't have explicit dark: classes */
+        .dark body {
+            /* background-color: #000000; /* Pure black - now handled by techy-hero-bg */
+            color: #e2e8f0; /* Tailwind gray-200 */
+        }
+
+        /* Removed .gradient-bg as it's replaced by .techy-hero-bg for the hero section */
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -50px;
+            width: 2px;
+            height: 50px;
+            background-color: #3B82F6;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item:not(:last-child)::after {
+                left: 30px;
+                bottom: -30px;
+                height: 30px;
+            }
+        }
+
+        /* Blob animation for hero section */
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite cubic-bezier(0.6, 0.01, 0.3, 0.9);
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+
+        /* New techy background for the hero section */
+        .techy-hero-bg {
+            background-color: #000000; /* Base black */
+            background-image:
+                /* Subtle radial glow in the center */
+                radial-gradient(circle at center, rgba(30, 0, 60, 0.5) 0%, transparent 70%),
+                /* Very subtle grid pattern */
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 20px 20px, 20px 20px; /* First for radial, second/third for grid */
+            background-position: center center, 0 0, 0 0;
+        }
+    </style>
+</head>
+<body class="techy-hero-bg text-gray-200">
+    <!-- Navigation -->
+    <nav class="bg-black shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-shield-alt text-blue-700 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-white">TrackFree.me</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#problem" class="text-gray-200 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-300">The Problem</a>
+                    <a href="#solution" class="text-gray-200 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-300">Our Solution</a>
+                    <a href="#features" class="text-gray-200 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-300">Features</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-300">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#problem" class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-blue-400 hover:bg-gray-700 transition-colors duration-300">The Problem</a>
+                <a href="#solution" class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-blue-400 hover:bg-gray-700 transition-colors duration-300">Our Solution</a>
+                <a href="#features" class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-blue-400 hover:bg-gray-700 transition-colors duration-300">Features</a>
+                <a href="#team" class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-blue-400 hover:bg-gray-700 transition-colors duration-300">Team</a>
+                <a href="#roadmap" class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-blue-400 hover:bg-gray-700 transition-colors duration-300">Roadmap</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">Understand what apps know about you and take control</h1>
+                    <p class="text-xl mb-8 opacity-90">TrackFree.me empowers you with clear insights about your digital footprint and helps you protect your privacy.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#solution" class="bg-white text-blue-700 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium text-center shadow-md transition duration-300">How It Works</a>
+                        <a href="#features" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-700 px-6 py-3 rounded-lg font-medium text-center transition duration-300">Explore Features</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                        <div class="absolute top-20 -right-4 w-32 h-32 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+                        <div class="relative bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden">
+                            <div class="p-4 bg-zinc-800 flex items-center">
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="flex-1 text-center text-gray-200 font-medium">TrackFree.me</div>
+                            </div>
+                            <div class="p-6">
+                                <div class="mb-4">
+                                    <div class="text-gray-200 font-medium mb-2">Search for an app:</div>
+                                    <div class="relative">
+                                        <input type="text" placeholder="Facebook, Instagram, TikTok..." class="w-full px-4 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-zinc-950 text-gray-200">
+                                        <button class="absolute right-2 top-2 text-blue-400">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="text-gray-200 font-medium mb-2">Privacy Risk Score:</div>
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white font-bold mr-2">8.5</div>
+                                        <div class="text-sm text-gray-300">High Risk</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-gray-200 font-medium mb-2">Data Collected:</div>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-red-800 text-red-100 text-xs rounded-full">Location</span>
+                                        <span class="px-2 py-1 bg-red-800 text-red-100 text-xs rounded-full">Contacts</span>
+                                        <span class="px-2 py-1 bg-yellow-800 text-yellow-100 text-xs rounded-full">Browsing History</span>
+                                        <span class="px-2 py-1 bg-blue-800 text-blue-100 text-xs rounded-full">Device Info</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-100 mb-4">The Privacy Problem We're Solving</h2>
+                <div class="w-20 h-1 bg-blue-700 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">People use dozens of apps daily without knowing how much data is collected, leaving them vulnerable to tracking and profiling.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-zinc-900 p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+                    <div class="w-16 h-16 bg-blue-800 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-file-alt text-blue-200 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100 mb-3">Complex Policies</h3>
+                    <p class="text-gray-300">Privacy policies are long, unclear, and often ignored by users who just want to use the app.</p>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+                    <div class="w-16 h-16 bg-purple-700 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-user-secret text-purple-200 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100 mb-3">Limited Control</h3>
+                    <p class="text-gray-300">Most users don't know how to opt out, limit tracking, or delete their accounts and data.</p>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+                    <div class="w-16 h-16 bg-red-700 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-exclamation-triangle text-red-200 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100 mb-3">Vulnerability</h3>
+                    <p class="text-gray-300">This leads to loss of control over personal data and increased risk of leaks or misuse.</p>
+                </div>
+            </div>
+
+            <div class="bg-blue-950 rounded-xl p-8 md:p-12">
+                <div class="md:flex items-center">
+                    <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                        <div class="w-40 h-40 rounded-full bg-zinc-800 flex items-center justify-center shadow-md">
+                            <i class="fas fa-user-graduate text-6xl text-blue-200"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 md:pl-12">
+                        <h3 class="text-2xl font-bold text-gray-100 mb-4">Meet Grace, Our Primary User</h3>
+                        <p class="text-gray-300 mb-4">Grace is a 20-year-old university student who uses 15+ apps per day but has never read a privacy policy. She's curious about how her data is used but feels overwhelmed by tech jargon.</p>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-blue-400 mr-3"></i>
+                                <span class="text-gray-300">High school/university students</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-hands-helping text-blue-400 mr-3"></i>
+                                <span class="text-gray-300">Digital literacy NGOs</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-home text-blue-400 mr-3"></i>
+                                <span class="text-gray-300">Parents and teachers</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-bullhorn text-blue-400 mr-3"></i>
+                                <span class="text-gray-300">Community advocates</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-100 mb-4">Our Solution</h2>
+                <div class="w-20 h-1 bg-blue-700 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">TrackFree.me is a free, privacy-first web tool that empowers users to understand their digital footprint and take control of it.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="order-2 md:order-1">
+                    <div class="mb-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-blue-200 font-bold">1</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-100">App Search & Selection</h3>
+                        </div>
+                        <p class="text-gray-300 ml-16">Users can quickly search for or select popular apps from a preloaded list to see how each one handles their data.</p>
+                    </div>
+
+                    <div class="mb-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-700 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-purple-200 font-bold">2</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-100">Data Collection Overview</h3>
+                        </div>
+                        <p class="text-gray-300 ml-16">Clearly displays what types of personal data the app collects — such as location, contacts, browsing history, or biometrics.</p>
+                    </div>
+
+                    <div class="mb-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-700 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-green-200 font-bold">3</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-100">Actionable Guidance</h3>
+                        </div>
+                        <p class="text-gray-300 ml-16">Offers step-by-step instructions on how users can reduce tracking, adjust settings, or delete their account entirely.</p>
+                    </div>
+                </div>
+
+                <div class="order-1 md:order-2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-blue-700 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-purple-700 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                        <div class="relative bg-zinc-900 rounded-2xl shadow-xl overflow-hidden border border-zinc-700">
+                            <div class="p-4 bg-zinc-800 flex items-center">
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="flex-1 text-center text-gray-200 font-medium">TrackFree.me</div>
+                            </div>
+                            <div class="p-6">
+                                <div class="mb-6">
+                                    <div class="text-gray-200 font-medium mb-3">Popular Apps:</div>
+                                    <div class="grid grid-cols-3 gap-3">
+                                        <div class="p-3 bg-zinc-800 rounded-lg flex flex-col items-center">
+                                            <i class="fab fa-facebook text-blue-400 text-2xl mb-2"></i>
+                                            <span class="text-xs text-gray-300">Facebook</span>
+                                        </div>
+                                        <div class="p-3 bg-zinc-800 rounded-lg flex flex-col items-center">
+                                            <i class="fab fa-instagram text-pink-400 text-2xl mb-2"></i>
+                                            <span class="text-xs text-gray-300">Instagram</span>
+                                        </div>
+                                        <div class="p-3 bg-zinc-800 rounded-lg flex flex-col items-center">
+                                            <i class="fab fa-tiktok text-white text-2xl mb-2"></i>
+                                            <span class="text-xs text-gray-300">TikTok</span>
+                                        </div>
+                                        <div class="p-3 bg-zinc-800 rounded-lg flex flex-col items-center">
+                                            <i class="fab fa-whatsapp text-green-400 text-2xl mb-2"></i>
+                                            <span class="text-xs text-gray-300">WhatsApp</span>
+                                        </div>
+                                        <div class="p-3 bg-zinc-800 rounded-lg flex flex-col items-center">
+                                            <i class="fab fa-twitter text-blue-200 text-2xl mb-2"></i>
+                                            <span class="text-xs text-gray-300">Twitter</span>
+                                        </div>
+                                        <div class="p-3 bg-zinc-800 rounded-lg flex flex-col items-center">
+                                            <i class="fas fa-ellipsis-h text-gray-300 text-2xl mb-2"></i>
+                                            <span class="text-xs text-gray-300">More</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-gray-200 font-medium mb-3">Privacy Tips:</div>
+                                    <div class="space-y-3">
+                                        <div class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                                            <span class="text-sm text-gray-300">Turn off location tracking in app settings</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                                            <span class="text-sm text-gray-300">Review app permissions regularly</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
+                                            <span class="text-sm text-gray-300">Use strong, unique passwords</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-zinc-900 rounded-xl shadow-sm p-8 max-w-4xl mx-auto">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center mr-6">
+                        <i class="fas fa-lock text-blue-200 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-100">No Sign-Up Required</h3>
+                        <p class="text-gray-300">The tool collects no personal data and requires no login, keeping the experience fully anonymous and privacy-first.</p>
+                    </div>
+                </div>
+                <div class="border-t border-zinc-700 pt-6">
+                    <h4 class="font-medium text-gray-100 mb-4">Data Privacy Considerations:</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+                            <span class="text-gray-300">No login, cookies, or tracking</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+                            <span class="text-gray-300">All content based on public privacy policies</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+                            <span class="text-sm text-gray-300">We promote self-education, not fear</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-100 mb-4">Key Features</h2>
+                <div class="w-20 h-1 bg-blue-700 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Discover how TrackFree.me helps you take control of your digital privacy.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="feature-card bg-zinc-900 p-8 rounded-xl shadow-sm transition duration-300">
+                    <div class="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-search text-blue-200 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100 mb-3">App Search & Selection</h3>
+                    <p class="text-gray-300 mb-4">Quickly search for or select from popular apps to see how each one handles your data.</p>
+                    <div class="flex justify-center">
+                        <div class="w-full max-w-xs bg-zinc-800 p-4 rounded-lg shadow-inner">
+                            <div class="relative">
+                                <input type="text" placeholder="Search apps..." class="w-full px-4 py-2 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-zinc-950 text-gray-200 text-sm">
+                                <button class="absolute right-2 top-2 text-blue-400">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card bg-zinc-900 p-8 rounded-xl shadow-sm transition duration-300">
+                    <div class="w-16 h-16 bg-purple-700 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-pie text-purple-200 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100 mb-3">Privacy Risk Score</h3>
+                    <p class="text-gray-300 mb-4">Clear visual indicators show the privacy risk level of each app (🟢 Low / 🟡 Medium / 🔴 High).</p>
+                    <div class="flex justify-center space-x-4">
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold mb-2 mx-auto">2.1</div>
+                            <span class="text-xs text-gray-300">Low Risk</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold mb-2 mx-auto">5.7</div>
+                            <span class="text-xs text-gray-300">Medium</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center text-white font-bold mb-2 mx-auto">8.9</div>
+                            <span class="text-xs text-gray-300">High Risk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card bg-zinc-900 p-8 rounded-xl shadow-sm transition duration-300">
+                    <div class="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-tasks text-green-200 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-100 mb-3">Actionable Guidance</h3>
+                    <p class="text-gray-300 mb-4">Step-by-step instructions to reduce tracking, adjust settings, or delete accounts.</p>
+                    <div class="bg-zinc-800 p-4 rounded-lg shadow-inner">
+                        <div class="flex items-start mb-3">
+                            <div class="w-6 h-6 bg-blue-700 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                <span class="text-blue-200 text-sm">1</span>
+                            </div>
+                            <span class="text-sm text-gray-300">Open Facebook Settings</span>
+                        </div>
+                        <div class="flex items-start mb-3">
+                            <div class="w-6 h-6 bg-blue-700 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                <span class="text-blue-200 text-sm">2</span>
+                            </div>
+                            <span class="text-sm text-gray-300">Go to Privacy Settings</span>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-6 h-6 bg-blue-700 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                <span class="text-blue-200 text-sm">3</span>
+                            </div>
+                            <span class="text-sm text-gray-300">Turn off Location Tracking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-black text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to take control of your digital privacy?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">Join thousands of users who are already understanding and managing their digital footprint with TrackFree.me</p>
+            <a href="#" class="bg-white text-blue-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg shadow-lg transition duration-300 inline-block">Try It Now - It's Free</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-shield-alt text-blue-500 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">TrackFree.me</span>
+                    </div>
+                    <p class="text-gray-400">Empowering users to understand their digital footprint and take control of their privacy.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#problem" class="text-gray-400 hover:text-white transition">The Problem</a></li>
+                        <li><a href="#solution" class="text-gray-400 hover:text-white transition">Our Solution</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition">Features</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-white transition">Team</a></li>
+                        <li><a href="#roadmap" class="text-gray-400 hover:text-white transition">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Guides</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">App Reviews</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Digital Rights</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-800 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                &copy; 2023 TrackFree.me. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
