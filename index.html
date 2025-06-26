@@ -12,15 +12,13 @@
         body {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
         }
 
         /* Base dark mode styles for elements that don't have explicit dark: classes */
         .dark body {
-            /* background-color: #000000; /* Pure black - now handled by techy-hero-bg */
             color: #e2e8f0; /* Tailwind gray-200 */
         }
-
-        /* Removed .gradient-bg as it's replaced by .techy-hero-bg for the hero section */
 
         .feature-card:hover {
             transform: translateY(-10px);
@@ -73,7 +71,7 @@
             animation-delay: 4s;
         }
 
-        /* New techy background for the hero section */
+        /* Techy background for the entire page */
         .techy-hero-bg {
             background-color: #000000; /* Base black */
             background-image:
@@ -84,6 +82,44 @@
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 100% 100%, 20px 20px, 20px 20px; /* First for radial, second/third for grid */
             background-position: center center, 0 0, 0 0;
+        }
+
+        /* Scroll-triggered animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        .fade-in.animate {
+            opacity: 1;
+        }
+
+        /* Button hover animation */
+        .btn-hover-scale:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Privacy Score animation (kept in CSS but not used in HTML) */
+        @keyframes score-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .score-pulse-animation {
+            animation: score-pulse 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -102,7 +138,10 @@
                     <a href="#problem" class="text-gray-200 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-300">The Problem</a>
                     <a href="#solution" class="text-gray-200 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-300">Our Solution</a>
                     <a href="#features" class="text-gray-200 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-300">Features</a>
+                    <a href="#team" class="text-gray-200 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-300">Team</a>
+                    <a href="#roadmap" class="text-gray-200 hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-300">Roadmap</a>
                 </div>
+                <!-- Removed Gamification: Privacy Score Display -->
                 <div class="-mr-2 flex items-center md:hidden">
                     <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-300">
                         <span class="sr-only">Open main menu</span>
@@ -128,15 +167,15 @@
     <section class="text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
             <div class="md:flex md:items-center md:justify-between">
-                <div class="md:w-1/2 mb-10 md:mb-0">
+                <div class="md:w-1/2 mb-10 md:mb-0 fade-in-up">
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">Understand what apps know about you and take control</h1>
                     <p class="text-xl mb-8 opacity-90">TrackFree.me empowers you with clear insights about your digital footprint and helps you protect your privacy.</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#solution" class="bg-white text-blue-700 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium text-center shadow-md transition duration-300">How It Works</a>
-                        <a href="#features" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-700 px-6 py-3 rounded-lg font-medium text-center transition duration-300">Explore Features</a>
+                        <a href="#solution" class="bg-white text-blue-700 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium text-center shadow-md transition duration-300 btn-hover-scale" >How It Works</a>
+                        <a href="#features" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-700 px-6 py-3 rounded-lg font-medium text-center transition duration-300 btn-hover-scale" >Explore Features</a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
+                <div class="md:w-1/2 flex justify-center fade-in-up animation-delay-2000">
                     <div class="relative w-full max-w-md">
                         <div class="absolute -top-6 -left-6 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
                         <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
@@ -187,28 +226,28 @@
     <!-- Problem Section -->
     <section id="problem" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 fade-in-up">
                 <h2 class="text-3xl font-bold text-gray-100 mb-4">The Privacy Problem We're Solving</h2>
                 <div class="w-20 h-1 bg-blue-700 mx-auto mb-6"></div>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">People use dozens of apps daily without knowing how much data is collected, leaving them vulnerable to tracking and profiling.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="bg-zinc-900 p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+                <div class="bg-zinc-900 p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300 fade-in-up">
                     <div class="w-16 h-16 bg-blue-800 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-file-alt text-blue-200 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100 mb-3">Complex Policies</h3>
                     <p class="text-gray-300">Privacy policies are long, unclear, and often ignored by users who just want to use the app.</p>
                 </div>
-                <div class="bg-zinc-900 p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+                <div class="bg-zinc-900 p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300 fade-in-up animation-delay-2000">
                     <div class="w-16 h-16 bg-purple-700 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-user-secret text-purple-200 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100 mb-3">Limited Control</h3>
                     <p class="text-gray-300">Most users don't know how to opt out, limit tracking, or delete their accounts and data.</p>
                 </div>
-                <div class="bg-zinc-900 p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+                <div class="bg-zinc-900 p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300 fade-in-up animation-delay-4000">
                     <div class="w-16 h-16 bg-red-700 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-exclamation-triangle text-red-200 text-2xl"></i>
                     </div>
@@ -217,7 +256,7 @@
                 </div>
             </div>
 
-            <div class="bg-blue-950 rounded-xl p-8 md:p-12">
+            <div class="bg-blue-950 rounded-xl p-8 md:p-12 fade-in-up">
                 <div class="md:flex items-center">
                     <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
                         <div class="w-40 h-40 rounded-full bg-zinc-800 flex items-center justify-center shadow-md">
@@ -254,7 +293,7 @@
     <!-- Solution Section -->
     <section id="solution" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 fade-in-up">
                 <h2 class="text-3xl font-bold text-gray-100 mb-4">Our Solution</h2>
                 <div class="w-20 h-1 bg-blue-700 mx-auto mb-6"></div>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">TrackFree.me is a free, privacy-first web tool that empowers users to understand their digital footprint and take control of it.</p>
@@ -262,7 +301,7 @@
 
             <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
                 <div class="order-2 md:order-1">
-                    <div class="mb-8">
+                    <div class="mb-8 fade-in-up">
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center mr-4">
                                 <span class="text-blue-200 font-bold">1</span>
@@ -272,7 +311,7 @@
                         <p class="text-gray-300 ml-16">Users can quickly search for or select popular apps from a preloaded list to see how each one handles their data.</p>
                     </div>
 
-                    <div class="mb-8">
+                    <div class="mb-8 fade-in-up animation-delay-2000">
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-purple-700 rounded-full flex items-center justify-center mr-4">
                                 <span class="text-purple-200 font-bold">2</span>
@@ -282,7 +321,7 @@
                         <p class="text-gray-300 ml-16">Clearly displays what types of personal data the app collects — such as location, contacts, browsing history, or biometrics.</p>
                     </div>
 
-                    <div class="mb-8">
+                    <div class="mb-8 fade-in-up animation-delay-4000">
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-green-700 rounded-full flex items-center justify-center mr-4">
                                 <span class="text-green-200 font-bold">3</span>
@@ -293,7 +332,7 @@
                     </div>
                 </div>
 
-                <div class="order-1 md:order-2 flex justify-center">
+                <div class="order-1 md:order-2 flex justify-center fade-in-up">
                     <div class="relative w-full max-w-md">
                         <div class="absolute -top-6 -left-6 w-32 h-32 bg-blue-700 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
                         <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-purple-700 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
@@ -359,7 +398,7 @@
                 </div>
             </div>
 
-            <div class="bg-zinc-900 rounded-xl shadow-sm p-8 max-w-4xl mx-auto">
+            <div class="bg-zinc-900 rounded-xl shadow-sm p-8 max-w-4xl mx-auto fade-in-up">
                 <div class="flex items-center mb-6">
                     <div class="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center mr-6">
                         <i class="fas fa-lock text-blue-200 text-2xl"></i>
@@ -393,14 +432,14 @@
     <!-- Features Section -->
     <section id="features" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 fade-in-up">
                 <h2 class="text-3xl font-bold text-gray-100 mb-4">Key Features</h2>
                 <div class="w-20 h-1 bg-blue-700 mx-auto mb-6"></div>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">Discover how TrackFree.me helps you take control of your digital privacy.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="feature-card bg-zinc-900 p-8 rounded-xl shadow-sm transition duration-300">
+                <div class="feature-card bg-zinc-900 p-8 rounded-xl shadow-sm transition duration-300 fade-in-up">
                     <div class="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-search text-blue-200 text-2xl"></i>
                     </div>
@@ -418,7 +457,7 @@
                     </div>
                 </div>
 
-                <div class="feature-card bg-zinc-900 p-8 rounded-xl shadow-sm transition duration-300">
+                <div class="feature-card bg-zinc-900 p-8 rounded-xl shadow-sm transition duration-300 fade-in-up animation-delay-2000">
                     <div class="w-16 h-16 bg-purple-700 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-chart-pie text-purple-200 text-2xl"></i>
                     </div>
@@ -440,26 +479,26 @@
                     </div>
                 </div>
 
-                <div class="feature-card bg-zinc-900 p-8 rounded-xl shadow-sm transition duration-300">
+                <div class="feature-card bg-zinc-900 p-8 rounded-xl shadow-sm transition duration-300 fade-in-up animation-delay-4000">
                     <div class="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-tasks text-green-200 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-100 mb-3">Actionable Guidance</h3>
                     <p class="text-gray-300 mb-4">Step-by-step instructions to reduce tracking, adjust settings, or delete accounts.</p>
                     <div class="bg-zinc-800 p-4 rounded-lg shadow-inner">
-                        <div class="flex items-start mb-3">
+                        <div class="flex items-start mb-3" >
                             <div class="w-6 h-6 bg-blue-700 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                                 <span class="text-blue-200 text-sm">1</span>
                             </div>
                             <span class="text-sm text-gray-300">Open Facebook Settings</span>
                         </div>
-                        <div class="flex items-start mb-3">
+                        <div class="flex items-start mb-3" >
                             <div class="w-6 h-6 bg-blue-700 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                                 <span class="text-blue-200 text-sm">2</span>
                             </div>
                             <span class="text-sm text-gray-300">Go to Privacy Settings</span>
                         </div>
-                        <div class="flex items-start">
+                        <div class="flex items-start" >
                             <div class="w-6 h-6 bg-blue-700 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                                 <span class="text-blue-200 text-sm">3</span>
                             </div>
@@ -474,16 +513,16 @@
 
     <!-- CTA Section -->
     <section class="bg-black text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in-up">
             <h2 class="text-3xl font-bold mb-6">Ready to take control of your digital privacy?</h2>
             <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">Join thousands of users who are already understanding and managing their digital footprint with TrackFree.me</p>
-            <a href="#" class="bg-white text-blue-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg shadow-lg transition duration-300 inline-block">Try It Now - It's Free</a>
+            <a href="#" class="bg-white text-blue-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg shadow-lg transition duration-300 inline-block btn-hover-scale" >Try It Now - It's Free</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
                     <div class="flex items-center mb-4">
@@ -538,6 +577,26 @@
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         });
+
+        // --- Animations (Intersection Observer) ---
+        const animateOnScrollElements = document.querySelectorAll('.fade-in-up, .fade-in');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        animateOnScrollElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Removed Gamification JavaScript logic
     </script>
 </body>
 </html>
