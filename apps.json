@@ -79,6 +79,253 @@
     "https://help.instagram.com/181231772500920"
   ]
 }
+,
+{
+  "name": "Telegram",
+  "data_collected": [
+    "Phone number (required to register)",
+    "Basic account data (username, profile name, profile photo, bio)",
+    "Optional data (birthday, email for recovery, login email)",
+    "Contacts (if synced, names and phone numbers only)",
+    "Cloud chat content (messages, media, documents)",
+    "Secret chat content (end-to-end encrypted, not stored on servers)",
+    "Metadata (IP address, device info, username change history, etc.)",
+    "Location data (when shared or via People Nearby)",
+    "Usage patterns (frequency of interaction, bot usage, etc.)",
+    "Public content in groups/channels",
+    "Bot interaction data (if you use bots or Telegram Business)",
+    "Voice/video message data (if transcribed using Telegram Premium)",
+    "Payment data (via third-party providers; Telegram receives only tokens)",
+    "Shipping info (for purchases, if user saves it)"
+  ],
+  "shared_or_sold": "Telegram does not sell user data. It shares limited data with: (1) third-party bot developers (with user interaction); (2) Telegram's own group companies for service delivery; (3) law enforcement with valid legal orders (e.g., IP address and phone number); (4) Google for message translation and transcription (on request by user, with strict limitations).",
+  "risk_score": "Medium",
+  "opt_out_or_delete": "You can manage and delete synced contacts, bot permissions, translation history, payment info, and even your account in: Settings > Privacy & Security > Data Settings. To delete your account, visit the [Deactivation Page](https://my.telegram.org/auth?to=deactivate).",
+  "sources": [
+    "https://telegram.org/privacy",
+    "https://core.telegram.org/faq#q-how-do-i-delete-my-account"
+  ]
+},{
+  "name": "X (formerly Twitter)",
+  "data_collected": [
+    "Display name, username, password, phone number or email (required to register)",
+    "Date of birth and display language",
+    "Profile photo, bio, and location (if added)",
+    "Professional details (for business accounts)",
+    "Payment information (card details, billing address for paid services)",
+    "Posts, likes, replies, reposts, bookmarks, DMs (including metadata and content)",
+    "Contact list (if synced)",
+    "Device information (IP address, browser, OS, device ID, memory, battery level)",
+    "Location data (approximate or precise, depending on settings)",
+    "Log data (referrer, access times, ads viewed/clicked, search terms, etc.)",
+    "Cookies and usage tracking (including third-party sites with embedded X content)",
+    "Biometric data (if consented)",
+    "Job application and employment preference data (if using job features)",
+    "Inferred identity (based on linked devices, browser activity, email/phone hashes)",
+    "Ad engagement data (views, clicks, shares, and actions)"
+  ],
+  "shared_or_sold": "X shares user data with: (1) advertisers and ad tech partners; (2) analytics and service providers; (3) affiliates and group companies; (4) third-party developers via API access (public data); (5) law enforcement, under valid legal requests. User data may also be shared or sold in the event of a merger, sale, or acquisition. Some data may be used to train AI models if you haven’t opted out.",
+  "risk_score": "High",
+  "opt_out_or_delete": "You can manage data sharing in: Settings > Privacy & Safety. You can also request your data or delete your account via Settings > Your Account > Deactivate. Full deletion occurs after 30 days of deactivation.",
+  "sources": [
+    "https://privacy.x.com/en/policy",
+    "https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive",
+    "https://help.twitter.com/en/managing-your-account/how-to-deactivate-twitter-account"
+  ]
+},{
+  "name": "Snapchat",
+  "data_collected": [
+    "Full name, username, email address, phone number, birthday (for account creation)",
+    "Bitmoji, profile picture, and other profile customization",
+    "Payment details, billing/shipping address, and transaction history (for purchases)",
+    "Snaps, Chats, Stories, voice and video calls (content and metadata)",
+    "Saved content in Memories or My Eyes Only",
+    "Content generated with AI features (text, audio, images, videos, location)",
+    "Interaction data (e.g., who you snap with, Stories watched, Lenses used)",
+    "Device information (OS, memory, sensors, headphone use, installed apps)",
+    "IP address and approximate/precise location (GPS, Wi-Fi, mobile signal)",
+    "Cookies and tracking data (including usage of third-party sites)",
+    "Phone contacts (if synced), and images/files from device (if permission granted)",
+    "Linked third-party account data (e.g., Spotify, Bitmoji, etc.)",
+    "Ad engagement (e.g., views, clicks, purchases)",
+    "Information from surveys, support requests, or research panels",
+    "Reports or data from other users, law enforcement, or partners"
+  ],
+  "shared_or_sold": "Snapchat shares user data with: (1) advertisers and analytics partners; (2) third-party apps linked by the user; (3) integrated service providers (e.g., payment processors); (4) law enforcement upon valid legal request; (5) Snap affiliates and subsidiaries; (6) potential buyers during mergers or acquisitions. Public content (e.g., Stories, Snap Map, Spotlight) may be visible outside Snapchat. Private content (e.g., Chats, Memories) is not shared unless required by law or settings allow.",
+  "risk_score": "High",
+  "opt_out_or_delete": "Manage data and privacy in: Settings > Privacy Controls. You can delete content or your account via Settings > Account Actions > Delete Account. Download your data using the 'Download My Data' tool. Deleted accounts are permanently removed after 30 days.",
+  "sources": [
+    "https://values.snap.com/privacy/privacy-policy",
+    "https://support.snapchat.com/en-US/a/download-my-data",
+    "https://support.snapchat.com/en-US/a/delete-my-account"
+  ]
+},{
+  "name": "Telegram",
+  "data_collected": [
+    "Phone number, screen name, profile picture, and optional bio/about info",
+    "Email address (for 2FA recovery or login codes if provided)",
+    "Birthday (optional, with visibility control)",
+    "Cloud chat content (messages, media, files, paid posts)",
+    "Metadata: IP address, device info, username changes (up to 12 months)",
+    "Synced contacts (name and phone number only)",
+    "App and message usage analytics (aggregated and anonymized)",
+    "Live location and location shares (if enabled)",
+    "Secret chats (end-to-end encrypted, not stored on servers)",
+    "Data shared through bots, including messages and interaction metadata",
+    "Payment and shipping info (via third-party providers only)",
+    "Voice/video messages for transcription (if user-enabled, shared with Google)",
+    "Text translation requests (shared with Google if used)",
+    "Cookies (only for Telegram Web functionality)"
+  ],
+  "shared_or_sold": "Telegram shares data: (1) with other users you communicate with; (2) with Telegram group companies (e.g., in the British Virgin Islands and Dubai); (3) with law enforcement under valid legal orders (e.g., IP and phone number for criminal investigations); (4) with Google LLC for translation or transcription features, only when users enable them. Telegram does not sell personal data or use it for ad targeting.",
+  "risk_score": "Moderate",
+  "opt_out_or_delete": "To delete your Telegram account: visit the deactivation page at https://my.telegram.org/auth. You can also manage and delete data like synced contacts, payment info, chat history, and disable features in Settings > Privacy & Security > Data Settings. Inactive accounts are automatically deleted after 18 months by default (adjustable).",
+  "sources": [
+    "https://telegram.org/privacy",
+    "https://core.telegram.org/faq",
+    "https://core.telegram.org/mtproto",
+    "https://t.me/transparency"
+  ]
+}
+,{
+  "name": "Reddit",
+  "data_collected": [
+    "Username (public), email address, and password (if applicable)",
+    "Phone number (optional, used for verification or login)",
+    "Profile info: bio, gender, birthday, location, language, profile picture, social links (optional)",
+    "Account preferences and interests selected at signup",
+    "Public content: posts, comments, upvotes/downvotes, chat messages, and post metadata",
+    "Private content: DMs, modmail, drafts, saved posts, reports to Reddit",
+    "Usage activity: page views, search terms, ad clicks, subreddit subscriptions, post interactions",
+    "Log data: IP address, browser type, OS, device IDs, mobile carrier, referral URLs (IP deleted after 100 days)",
+    "Location (estimated from IP or optionally shared)",
+    "Cookie and similar tracking data for personalization, analytics, and ad targeting",
+    "Purchase and transaction info (Reddit Premium, avatars, NFTs — via Stripe or other third-party processors)",
+    "Inferred data: age range, language, or interests (for content/ad customization)",
+    "Third-party service data (e.g., Google or Apple login, embeds like YouTube/Twitter, ad interactions)",
+    "Session replays for Reddit Ads users (for support and research)"
+  ],
+  "shared_or_sold": "Reddit shares data: (1) with advertisers and analytics providers (e.g., cookie IDs, hashed emails); (2) with vendors like payment processors, age verification, cloud hosting, compliance services; (3) with Reddit affiliates and subsidiaries; (4) with law enforcement under valid legal process; (5) with third-party services linked to your Reddit account (e.g., sign-in with Google/Apple); (6) embedded content from YouTube, X/Twitter, etc., may collect your data separately. Reddit does *not* sell personal data under CCPA definitions.",
+  "risk_score": "Moderate to High",
+  "opt_out_or_delete": "To delete your Reddit account: go to User Settings > Account > Delete Account. This removes your profile, but posts/comments remain unless deleted first. You can opt out of ad personalization, cookie tracking, and revoke linked apps via User Settings. Privacy requests (data access, correction, deletion) can be sent via redditdatarequests@reddit.com or through in-app options.",
+  "sources": [
+    "https://www.redditinc.com/policies/privacy-policy",
+    "https://www.reddit.com/settings/privacy",
+    "https://www.reddit.com/help/privacypolicy",
+    "https://www.reddit.com/personalization",
+    "https://www.reddit.com/help/datarequest"
+  ]
+}
+,{
+  "name": "Facebook (Meta)",
+  "data_collected": [
+    "Name, email address, phone number, birthday, gender, profile photo, location, bio",
+    "Photos, videos, voice recordings, Stories, hashtags, and posts you upload or interact with",
+    "Posts, comments, likes, shares, and other user-generated content",
+    "Voice-enabled interactions and camera-roll access (if permitted)",
+    "Messages you send and receive, including metadata and message content (where legally allowed)",
+    "Public profile information",
+    "Device info: OS, browser, screen resolution, battery level, app usage, sensors, etc.",
+    "Device activity: foreground/background status, mouse movement",
+    "IP address, GPS, Wi-Fi/Bluetooth/Cell signal info, and device identifiers",
+    "Cookie data and web tracking via Facebook Pixel and third-party websites",
+    "Purchases and transactions, including partial payment data and Meta Pay usage",
+    "Activity frequency, session duration, and interaction patterns on the platform",
+    "Survey responses, health data, religion, political views (only if explicitly given)",
+    "Third-party data from advertisers, partners, WhatsApp, Instagram, etc.",
+    "App usage, interactions, installed apps, and integrations",
+    "Interactions with ads: views, clicks, and engagements",
+    "Network and performance diagnostics, crash reports",
+    "Information submitted for support (e.g., selfies for account recovery)"
+  ],
+  "shared_or_sold": "Facebook shares data with third parties including advertisers, law enforcement, affiliated Meta companies (Instagram, WhatsApp), analytics providers, partners, vendors (e.g., cloud services, payment processors), and app/game developers integrated via Facebook. Data is also shared across borders and stored globally. Facebook does not 'sell' your data in exchange for money under CCPA definitions, but it heavily uses your data for targeted ads and insights.",
+  "risk_score": "High",
+  "opt_out_or_delete": "Go to Settings & Privacy > Settings > Your Facebook Information. From there, you can download your data, deactivate or delete your account, and manage ad preferences. To limit ad tracking, visit Settings > Ads > Ad Settings. You can also limit third-party data via Off-Facebook Activity settings. For legal requests or special data rights (e.g., GDPR, CCPA), visit https://www.facebook.com/help/contact/540977946302970",
+  "sources": [
+    "https://www.facebook.com/privacy/policy",
+    "https://www.facebook.com/help/568137493302217",
+    "https://www.facebook.com/help/325807937506242",
+    "https://www.facebook.com/off_facebook_activity",
+    "https://transparency.fb.com/en-gb/"
+  ]
+},{
+  "name": "ChatGPT (OpenAI)",
+  "data_collected": [
+    "Name, email, phone number, date of birth, account credentials",
+    "Payment info and transaction history (if applicable)",
+    "Content you input: prompts, uploaded files, images, audio, etc.",
+    "Technical data: IP address, browser type, OS, time zone, language",
+    "Usage data: interaction logs, feature usage, session duration",
+    "Device identifiers, device type, and configuration",
+    "General location (based on IP) or precise GPS if provided",
+    "Cookies and tracking technologies for session persistence and analytics",
+    "Communications with OpenAI (support, email, social media messages)",
+    "Information from third parties (e.g., fraud prevention vendors, marketing sources)",
+    "Publicly available internet data (used to train models)"
+  ],
+  "shared_or_sold": "OpenAI **does not sell** your personal data. However, it shares data with third-party service providers (e.g., hosting, cloud, analytics, payments, email) and may disclose personal data to affiliates, law enforcement, or in business transfers. Admins of enterprise accounts may access user data. If you use features that share data (like link-sharing, GPTs with web access), that data may be visible to others.",
+  "risk_score": "Medium",
+  "opt_out_or_delete": "You can delete your account or data via your OpenAI account settings. To opt out of having your content used for model training, go to: https://platform.openai.com/account/data-controls. For GDPR/CCPA requests, submit via https://privacy.openai.com or email dsar@openai.com.",
+  "sources": [
+    "https://openai.com/privacy",
+    "https://platform.openai.com/account/data-controls",
+    "https://help.openai.com/en/articles/7730893",
+    "https://privacy.openai.com"
+  ]
+}
+,{
+  "name": "Spotify",
+  "data_collected": [
+    "Name, email address, phone number, date of birth, gender, country",
+    "Login credentials and account preferences",
+    "Payment and billing information (for paid subscriptions)",
+    "Music listening history (songs, playlists, podcasts, frequency, duration)",
+    "Search queries, likes, shares, and playlists created",
+    "Device information (type, OS, browser, unique device ID)",
+    "IP address, network connection type, and general location",
+    "Precise location (if you opt in via mobile settings)",
+    "In-app interactions, ads you’ve seen and clicked on",
+    "Voice recordings (if you use voice features)",
+    "Third-party data (e.g., when you sign up via Facebook or link third-party apps)",
+    "Data from Spotify partners (e.g., advertisers, rights holders, or analytics providers)"
+  ],
+  "shared_or_sold": "Spotify **does not sell** personal data, but it shares data with third-party service providers (e.g., cloud hosting, payments, analytics, customer support), marketing partners, advertisers, and music rights holders. It may also share data with third parties you connect to via Spotify, and law enforcement when legally required.",
+  "risk_score": "Medium",
+  "opt_out_or_delete": "You can delete or download your data via your Spotify account settings or by visiting: https://support.spotify.com/article/data-rights-and-privacy-settings/. You can opt out of personalized ads through the Privacy Settings in your account or mobile device.",
+  "sources": [
+    "https://www.spotify.com/legal/privacy-policy/",
+    "https://support.spotify.com/article/data-rights-and-privacy-settings/",
+    "https://www.spotify.com/account/privacy/",
+    "https://www.spotify.com/legal/cookies-policy/"
+  ]
+}
+,{
+  "name": "Google",
+  "data_collected": [
+    "Name, email, phone number, password, birthdate, and gender",
+    "Search history, videos watched, ads clicked, and purchase activity",
+    "Voice and audio interactions (e.g., Google Assistant)",
+    "Chrome browsing history (if synced)",
+    "Location data via GPS, IP address, Wi-Fi, and Bluetooth signals",
+    "Device information: hardware model, OS, app version, browser type",
+    "App usage data and crash reports",
+    "Contacts and people you communicate or share with (if permission granted)",
+    "Call and message metadata (if using Google services for communication)",
+    "Third-party app and website activity that uses Google services",
+    "Content uploaded to services like Drive, Gmail, Photos",
+    "Cookies, pixel tags, and browser local storage"
+  ],
+  "shared_or_sold": "Google **does not sell** personal information. However, it **shares data** with trusted affiliates, vendors (e.g., cloud services, support), advertisers (for measurement), and government authorities when legally required. Data may also be shared with app developers or organizations you are part of (e.g., your school or employer).",
+  "risk_score": "High",
+  "opt_out_or_delete": "You can manage or delete your data via: [https://myaccount.google.com](https://myaccount.google.com). This includes activity, location, ad personalization, YouTube history, and full account deletion. You can also export your data via [https://takeout.google.com](https://takeout.google.com).",
+  "sources": [
+    "https://policies.google.com/privacy",
+    "https://myaccount.google.com/privacycheckup",
+    "https://takeout.google.com/",
+    "https://support.google.com/accounts/answer/3024190",
+    "https://support.google.com/policies/answer/9581826"
+  ]
+}
 
   ]
 }
