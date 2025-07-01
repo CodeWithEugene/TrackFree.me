@@ -6,122 +6,7 @@
     <title>TrackFree.me - Take Control of Your Digital Footprint</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
-        }
-
-        /* Base dark mode styles for elements that don't have explicit dark: classes */
-        .dark body {
-            color: #e2e8f0; /* Tailwind gray-200 */
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        .timeline-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -50px;
-            width: 2px;
-            height: 50px;
-            background-color: #3B82F6;
-        }
-
-        @media (max-width: 768px) {
-            .timeline-item:not(:last-child)::after {
-                left: 30px;
-                bottom: -30px;
-                height: 30px;
-            }
-        }
-
-        /* Blob animation for hero section */
-        @keyframes blob {
-            0% {
-                transform: translate(0px, 0px) scale(1);
-            }
-            33% {
-                transform: translate(30px, -50px) scale(1.1);
-            }
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
-            }
-            100% {
-                transform: translate(0px, 0px) scale(1);
-            }
-        }
-
-        .animate-blob {
-            animation: blob 7s infinite cubic-bezier(0.6, 0.01, 0.3, 0.9);
-        }
-
-        .animation-delay-2000 {
-            animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-            animation-delay: 4s;
-        }
-
-        /* Techy background for the entire page */
-        .techy-hero-bg {
-            background-color: #000000; /* Base black */
-            background-image:
-                /* Subtle radial glow in the center */
-                radial-gradient(circle at center, rgba(30, 0, 60, 0.5) 0%, transparent 70%),
-                /* Very subtle grid pattern */
-                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 20px 20px, 20px 20px; /* First for radial, second/third for grid */
-            background-position: center center, 0 0, 0 0;
-        }
-
-        /* Scroll-triggered animations */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in-up.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-in {
-            opacity: 0;
-            transition: opacity 1s ease-out;
-        }
-
-        .fade-in.animate {
-            opacity: 1;
-        }
-
-        /* Button hover animation */
-        .btn-hover-scale:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* Privacy Score animation (kept in CSS but not used in HTML) */
-        @keyframes score-pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .score-pulse-animation {
-            animation: score-pulse 0.5s ease-in-out;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="techy-hero-bg text-gray-200">
     <!-- Navigation -->
@@ -163,21 +48,21 @@
 
     <!-- Hero Section -->
     <section class="text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-32">
-            <div class="md:flex md:items-center md:justify-between flex-col md:flex-row">
-                <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left fade-in-up">
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">Understand what apps know about you and take control</h1>
-                    <p class="text-lg sm:text-xl mb-8 opacity-90">TrackFree.me empowers you with clear insights about your digital footprint and helps you protect your privacy.</p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
-                        <a href="#solution" class="bg-white text-blue-700 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium text-center shadow-md transition duration-300 btn-hover-scale" >How It Works</a>
-                        <a href="#features" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-700 px-6 py-3 rounded-lg font-medium text-center transition duration-300 btn-hover-scale" >Explore Features</a>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-32">
+            <div class="flex flex-col items-center">
+                <!-- Introductory Text -->
+                <div class="w-full text-center fade-in-up mb-8 sm:mb-10">
+                    <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight mb-6">Understand what apps know about you and take control</h1>
+                    <p class="text-base sm:text-lg md:text-xl mb-8 opacity-90">TrackFree.me empowers you with clear insights about your digital footprint and helps you protect your privacy.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center">
+                        <a href="#solution" class="bg-white text-blue-700 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium text-center shadow-md transition duration-300 btn-hover-scale text-base sm:text-lg">How It Works</a>
+                        <a href="#features" class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-700 px-6 py-3 rounded-lg font-medium text-center transition duration-300 btn-hover-scale text-base sm:text-lg">Explore Features</a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center fade-in-up animation-delay-2000 mt-12 md:mt-0">
-                    <div class="relative w-full max-w-sm sm:max-w-md">
-                        <div class="absolute -top-6 -left-6 w-24 h-24 sm:w-32 sm:h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-                        <div class="absolute -bottom-8 -right-8 w-24 h-24 sm:w-32 sm:h-32 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-                        <div class="absolute top-10 -right-4 w-24 h-24 sm:w-32 sm:h-32 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+                <!-- Search Component: below the text -->
+                <div class="w-full max-w-xs sm:max-w-md flex justify-center fade-in-up mt-8 sm:mt-12 px-2">
+                    <div class="relative w-full">
+                        <!-- App Search Component -->
                         <div class="relative bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden border border-zinc-700">
                             <div class="p-4 bg-zinc-800 flex items-center">
                                 <div class="flex space-x-2">
@@ -185,36 +70,33 @@
                                     <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                                     <div class="w-3 h-3 rounded-full bg-green-500"></div>
                                 </div>
-                                <div class="flex-1 text-center text-gray-200 font-medium">TrackFree.me</div>
+                                <div class="flex-1 text-center text-gray-200 font-medium text-sm sm:text-base">TrackFree.me</div>
                             </div>
-                            <div class="p-6">
+                            <div class="p-4 sm:p-6">
                                 <div class="mb-4">
-                                    <div class="text-gray-200 font-medium mb-2">Search for an app:</div>
+                                    <label for="app-search" class="text-gray-200 font-medium mb-2 block text-sm sm:text-base">Search for an app:</label>
                                     <div class="relative">
-                                        <input type="text" placeholder="Facebook, Instagram, TikTok..." class="w-full px-4 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-zinc-950 text-gray-200 text-sm sm:text-base">
+                                        <input id="app-search" type="text" placeholder="Facebook, Instagram, TikTok..." class="w-full px-4 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-zinc-950 text-gray-200 text-sm sm:text-base" />
                                         <button class="absolute right-2 top-2 text-blue-400">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
                                 </div>
-                                <div class="mb-4">
-                                    <div class="text-gray-200 font-medium mb-2">Privacy Risk Score:</div>
-                                    <div class="flex items-center">
-                                        <div class="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white font-bold mr-2 text-sm">8.5</div>
-                                        <div class="text-sm text-gray-300">High Risk</div>
+                                <div id="app-results" class="hidden mt-6">
+                                    <h3 id="app-name" class="text-lg font-semibold text-white mb-2"></h3>
+                                    <p id="risk-score" class="text-sm text-red-400 mb-3"></p>
+                                    <div class="mb-3">
+                                        <p class="text-sm font-semibold text-gray-200">Data Collected:</p>
+                                        <ul id="data-collected" class="list-disc list-inside text-sm text-gray-300"></ul>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="text-gray-200 font-medium mb-2">Data Collected:</div>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-red-800 text-red-100 text-xs rounded-full">Location</span>
-                                        <span class="px-2 py-1 bg-red-800 text-red-100 text-xs rounded-full">Contacts</span>
-                                        <span class="px-2 py-1 bg-yellow-800 text-yellow-100 text-xs rounded-full">Browsing History</span>
-                                        <span class="px-2 py-1 bg-blue-800 text-blue-100 text-xs rounded-full">Device Info</span>
+                                    <div>
+                                        <p class="text-sm font-semibold text-gray-200">Actionable Guidance:</p>
+                                        <p id="opt-out-delete" class="text-sm text-gray-400"></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- End of App Search Component -->
                     </div>
                 </div>
             </div>
@@ -543,45 +425,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-        });
-
-        // Scroll animation logic
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                    observer.unobserve(entry.target); // Stop observing once animated
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-up, .fade-in').forEach(element => {
-            observer.observe(element);
-        });
-    </script>
-
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
