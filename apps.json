@@ -1,0 +1,84 @@
+{
+  "apps": [
+   {
+  "name": "TikTok",
+  "data_collected": [
+    "Account info: username, password, phone number, email, DOB",
+    "User-generated content (photos, videos, audio, comments, livestreams)",
+    "Clipboard data (if permission granted)",
+    "Messages and chat metadata",
+    "Purchase & transaction details (payment info, delivery address, items)",
+    "Contacts from phone/social networks",
+    "Identity/age verification documents",
+    "Survey, contest, or promotion data",
+    "Platform usage: watch history, likes, comments, search terms, interactions",
+    "Inferred interests, age, gender",
+    "Device info: IP address, OS, model, screen resolution, battery, audio, keystroke patterns",
+    "Location: approximate (via IP/SIM) and precise (with GPS permission)",
+    "Image/audio analysis for content classification and effects",
+    "Cookies and tracking data",
+    "Data from linked services (e.g., Google/Facebook login)",
+    "Off-platform behavior from advertisers/partners",
+    "Data from public sources, third parties, and user reports"
+  ],
+  "shared_or_sold": "TikTok shares user data with advertisers, analytics firms, cloud providers, payment processors, affiliates, and law enforcement when required. Data is not 'sold' in the traditional sense but is heavily integrated and used for personalized ads and partner services. Data may be shared publicly depending on privacy settings.",
+  "risk_score": "High",
+  "opt_out_or_delete": "Go to: Settings → Manage Account → Delete Account. You can also restrict ad tracking, control who can message or view your content, and disable cookies through device/app/browser settings.",
+  "sources": [
+    "https://www.tiktok.com/legal/privacy-policy"
+  ]
+}
+,
+    {
+  "name": "WhatsApp",
+  "data_collected": [
+    "Phone number and profile info (name, photo, about)",
+    "Contact list (if permission granted)",
+    "Usage data: app usage, features used, message timestamps, interaction logs",
+    "Device info: model, OS, app version, battery, signal strength, mobile carrier, IP address",
+    "Connection info: time zone, browser, language, network",
+    "Messages (only temporarily stored if undelivered or media forwarding)",
+    "Status info, group membership, broadcast list membership",
+    "Location (approximate via IP; precise with permission)",
+    "Transaction and payment data (if payments are used)",
+    "Crash logs, diagnostics, and performance data",
+    "Info from customer support requests",
+    "Third-party info (Meta Companies, contacts, backup providers like iCloud/Google)",
+    "Metadata about interactions (e.g. who you talk to, when, how often)"
+  ],
+  "shared_or_sold": "Data is not sold, but is shared within the Meta Companies and with third-party service providers (e.g., cloud, analytics, payment). WhatsApp messages remain end-to-end encrypted by default. Metadata (e.g., when, who, how often you communicate) is still collected and used. Businesses may access messages, and can use Meta’s systems to manage communication.",
+  "risk_score": "Medium-High",
+  "opt_out_or_delete": "You can delete your account via: Settings → Account → Delete my account. You can also manage data access permissions (contacts, location) in your phone's settings. WhatsApp allows data export via Request Account Info.",
+  "sources": [
+    "https://www.whatsapp.com/legal/privacy-policy"
+  ]
+}
+,
+    {
+  "name": "Instagram",
+  "data_collected": [
+    "Account info (name, username, password, phone number, email)",
+    "Profile photo and bio",
+    "Content: photos, videos, comments, likes, stories, DMs (messages)",
+    "User interactions (likes, follows, comments, shares, search history)",
+    "Device info: model, OS, browser, battery, signal strength, cookies, camera/mic access",
+    "Location: approximate via IP, precise via GPS (if granted)",
+    "Contact info from synced phonebook (optional)",
+    "Activity off Instagram: websites visited, apps used, purchases made (via Meta Pixel/SDKs)",
+    "Inferred data: interests, preferences, demographics",
+    "Tags and mentions by other users",
+    "Shopping and transaction info (purchases made via Instagram)",
+    "Ad interaction and engagement metrics",
+    "Third-party data from advertisers, partners, and Meta Companies"
+  ],
+  "shared_or_sold": "Instagram shares user data with Meta Companies (Facebook, WhatsApp), advertisers, analytics firms, service providers, partners, and researchers. It does not 'sell' personal data but uses extensive cross-platform tracking for ad targeting and performance reporting. Complies with legal requests.",
+  "risk_score": "High",
+  "opt_out_or_delete": "You can request your data, delete specific posts, or delete your entire account via: Settings → Account → Delete Account. You can also disable tracking and ads personalization via your Meta privacy settings.",
+  "sources": [
+    "https://privacycenter.instagram.com/policy",
+    "https://help.instagram.com/181231772500920"
+  ]
+}
+
+  ]
+}
