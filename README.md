@@ -55,11 +55,11 @@ Digital privacy is more important than ever, but most people don’t know what d
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React.js, TypeScript, Tailwind CSS
-- **Backend:** Node.js, Express
+- **Frontend:** HTML, Vanilla CSS, Tailwind CSS
+- **Backend:** JS
 - **Database:** MongoDB
 - **APIs:** Privacy policy parsing, app metadata
-- **Deployment:** Azure Static Web Apps, GitHub Actions
+- **Deployment:** Netlify
 
 ---
 
@@ -94,14 +94,13 @@ npm run build
 
 ## 🌐 Deployment
 
-TrackFree.me is deployed on **Azure Static Web Apps** for scalability and reliability.
+TrackFree.me is deployed on **Netlify** for scalability and reliability.
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
+COMING SOON
 ---
 
 ## 📄 License
