@@ -50,15 +50,20 @@ fetch('apps.json')
         const riskScore = document.getElementById("risk-score");
         const dataCollected = document.getElementById("data-collected");
         const optOut = document.getElementById("opt-out-delete");
+        const loadingSpinner = document.getElementById("loading-spinner");
 
-        // Show loading while searching
-        appName.textContent = "Loading...";
+        // Show loading spinner and hide results
+        loadingSpinner.classList.remove("hidden");
+        appName.textContent = "";
         riskScore.textContent = "";
         dataCollected.innerHTML = "";
         optOut.textContent = "";
         resultBox.classList.remove("hidden");
 
         setTimeout(() => {
+            // Hide loading spinner
+            loadingSpinner.classList.add("hidden");
+
             // Case-insensitive, exact match
             const foundApp = appData.find(app => app.name.toLowerCase() === query);
 
@@ -75,16 +80,16 @@ fetch('apps.json')
                 }
 
                 appName.textContent = foundApp.name;
-                riskScore.innerHTML = `<strong>Privacy Risk:</strong> ${foundApp.risk_score} ${indicator}`;
+                riskScore.innerHTML = `<strong>Privacy Risk:</strong> ${foundApp.risk_score} ${indicator} <span style="margin-left:8px;"><strong>Score Count:</strong> ${foundApp.score_count}</span>`;
                 dataCollected.innerHTML = foundApp.data_collected.map(item => `<li>${item}</li>`).join('');
                 optOut.textContent = foundApp.opt_out_or_delete;
             } else {
-                appName.textContent = "App not found";
+                appName.textContent = "App not found, coming soon";
                 riskScore.textContent = "";
                 dataCollected.innerHTML = "";
                 optOut.textContent = "";
             }
-        }, 500); // Simulate loading delay
+        }, 4000); // Simulate loading delay
     }
 
     const searchInput = document.getElementById("app-search");
