@@ -38,9 +38,9 @@ Digital privacy is more important than ever, but most people don’t know what d
 
 ---
 
-## 🖼️ Screenshots
+## Live Demo
 
-> _Coming soon!_
+https://trackfreeme.netlify.app/
 
 ---
 
@@ -115,7 +115,7 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 **A:** TrackFree.me does not collect or store any personal data from users.
 
 **Q:** Can I suggest an app to add?  
-**A:** Yes! Open an issue or submit a pull request.
+**A:** This is a work in progress. Once the project is complete, we'll make it open-source. Stay tuned!
 
 ---
 
@@ -131,5 +131,11 @@ Email us at: [hello@trackfree.me](mailto:hello@trackfree.me)
 If you find TrackFree.me useful, please give us a ⭐️ on [GitHub](https://github.com/CodeWithEugene/TrackFree.me)!
 
 ---
+
+## Team
+TrackFree.me wouldn't be possible if it were not for:
+1. Eugene - [Github](https://github.com/CodeWithEugene)
+2. Victoria - [Github](https://github.com/Toritish)
+3. Sidney - [Github](https://github.com/mathncode-sid)
 
 > _Empowering you to take control of your digital privacy, one app at a time._
