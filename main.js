@@ -68,19 +68,23 @@ fetch('apps.json')
             const foundApp = appData.find(app => app.name.toLowerCase() === query);
 
             if (foundApp) {
-                // Determine color indicator
+                // Determine color indicator and class
                 let indicator = "";
+                let riskClass = "";
                 const score = foundApp.risk_score.toLowerCase();
                 if (score.includes("low")) {
                     indicator = "🟢";
+                    riskClass = "low-risk";
                 } else if (score.includes("medium")) {
                     indicator = "🟡";
+                    riskClass = "medium-risk";
                 } else if (score.includes("high")) {
                     indicator = "🔴";
+                    riskClass = "high-risk";
                 }
 
                 appName.textContent = foundApp.name;
-                riskScore.innerHTML = `<strong>Privacy Risk:</strong> ${foundApp.risk_score} ${indicator} <span style="margin-left:8px;"><strong>Score Count:</strong> ${foundApp.score_count}</span>`;
+                riskScore.innerHTML = `<strong>Privacy Risk:</strong> <span class="${riskClass}">${foundApp.risk_score}</span> ${indicator} <span style="margin-left:8px;"><strong>Score Count:</strong> ${foundApp.score_count}</span>`;
                 dataCollected.innerHTML = foundApp.data_collected.map(item => `<li>${item}</li>`).join('');
                 optOut.textContent = foundApp.opt_out_or_delete;
             } else {
@@ -117,3 +121,35 @@ fetch('apps.json')
   .catch(error => {
     console.error("Error loading app data:", error);
   });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Chatbot toggle
+    document.getElementById('chatbot-toggle').onclick = () => {
+        document.getElementById('chatbot-box').classList.toggle('hidden');
+    };
+
+    document.getElementById('chatbot-form').onsubmit = async (e) => {
+        e.preventDefault();
+        const input = document.getElementById('chatbot-input');
+        const msg = input.value.trim();
+        if (!msg) return;
+        const messages = document.getElementById('chatbot-messages');
+        messages.innerHTML += `<div><b>You:</b> ${msg}</div>`;
+        input.value = '';
+        messages.innerHTML += `<div><i>Bot is typing...</i></div>`;
+        messages.scrollTop = messages.scrollHeight;
+
+        try {
+            const res = await fetch('http://localhost:3001/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: msg })
+            });
+            const data = await res.json();
+            messages.innerHTML += `<div><b>Bot:</b> ${data.reply}</div>`;
+        } catch (err) {
+            messages.innerHTML += `<div><b>Bot:</b> Sorry, there was an error.</div>`;
+        }
+        messages.scrollTop = messages.scrollHeight;
+    };
+});
