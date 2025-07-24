@@ -414,35 +414,6 @@
         </form>
       </div>
     </div>
-    <script>
-    // Chatbot toggle
-    document.getElementById('chatbot-toggle').onclick = () => {
-      document.getElementById('chatbot-box').classList.toggle('hidden');
-    };
-    document.getElementById('chatbot-form').onsubmit = async (e) => {
-      e.preventDefault();
-      const input = document.getElementById('chatbot-input');
-      const msg = input.value.trim();
-      if (!msg) return;
-      const messages = document.getElementById('chatbot-messages');
-      messages.innerHTML += `<div><b>You:</b> ${msg}</div>`;
-      input.value = '';
-      messages.innerHTML += `<div><i>Bot is typing...</i></div>`;
-      messages.scrollTop = messages.scrollHeight;
-
-      try {
-        const res = await fetch('http://localhost:3001/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: msg })
-        });
-        const data = await res.json();
-        messages.innerHTML += `<div><b>Bot:</b> ${data.reply}</div>`;
-      } catch (err) {
-        messages.innerHTML += `<div><b>Bot:</b> Sorry, there was an error.</div>`;
-      }
-      messages.scrollTop = messages.scrollHeight;
-    };
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
