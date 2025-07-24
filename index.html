@@ -403,7 +403,9 @@
 
     <!-- Simple Chatbot Widget -->
     <div id="chatbot-widget" style="position:fixed;bottom:24px;right:24px;z-index:9999;">
-      <button id="chatbot-toggle" class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg">Chat</button>
+      <button id="chatbot-toggle" class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg">
+        <i class="fas fa-comment-dots"></i> <!-- Font Awesome message icon -->
+      </button>
       <div id="chatbot-box" class="hidden bg-zinc-900 text-gray-200 rounded-xl shadow-xl p-4 mt-2 w-80" style="max-height:400px;overflow-y:auto;">
         <div id="chatbot-messages" class="mb-2 text-sm" style="min-height:120px;"></div>
         <form id="chatbot-form" class="flex">
@@ -413,7 +415,6 @@
       </div>
     </div>
     <script>
-    // filepath: index.html
     // Chatbot toggle
     document.getElementById('chatbot-toggle').onclick = () => {
       document.getElementById('chatbot-box').classList.toggle('hidden');
