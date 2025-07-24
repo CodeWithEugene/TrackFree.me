@@ -68,19 +68,23 @@ fetch('apps.json')
             const foundApp = appData.find(app => app.name.toLowerCase() === query);
 
             if (foundApp) {
-                // Determine color indicator
+                // Determine color indicator and class
                 let indicator = "";
+                let riskClass = "";
                 const score = foundApp.risk_score.toLowerCase();
                 if (score.includes("low")) {
                     indicator = "🟢";
+                    riskClass = "low-risk";
                 } else if (score.includes("medium")) {
                     indicator = "🟡";
+                    riskClass = "medium-risk";
                 } else if (score.includes("high")) {
                     indicator = "🔴";
+                    riskClass = "high-risk";
                 }
 
                 appName.textContent = foundApp.name;
-                riskScore.innerHTML = `<strong>Privacy Risk:</strong> ${foundApp.risk_score} ${indicator} <span style="margin-left:8px;"><strong>Score Count:</strong> ${foundApp.score_count}</span>`;
+                riskScore.innerHTML = `<strong>Privacy Risk:</strong> <span class="${riskClass}">${foundApp.risk_score}</span> ${indicator} <span style="margin-left:8px;"><strong>Score Count:</strong> ${foundApp.score_count}</span>`;
                 dataCollected.innerHTML = foundApp.data_collected.map(item => `<li>${item}</li>`).join('');
                 optOut.textContent = foundApp.opt_out_or_delete;
             } else {

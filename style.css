@@ -122,3 +122,19 @@ body {
 .score-pulse-animation {
     animation: score-pulse 0.5s ease-in-out;
 }
+
+/* Risk level indicators */
+.low-risk {
+    color: green;
+    font-weight: bold;
+}
+
+.medium-risk {
+    color: orange;
+    font-weight: bold;
+}
+
+.high-risk {
+    color: red;
+    font-weight: bold;
+}
