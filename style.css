@@ -114,12 +114,12 @@ body {
 }
 
 
-  /* Add hover animation for the chatbot button */
-  #chatbot-toggle {
+/* Add hover animation for the chatbot button */
+#chatbot-toggle {
     transition: transform 0.3s ease-in-out;
-  }
+}
 
-  #chatbot-toggle:hover {
+#chatbot-toggle:hover {
     transform: translateY(-5px); /* Makes the button float upward */
   }
 
