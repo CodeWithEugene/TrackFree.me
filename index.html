@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrackFree.me - Take Control of Your Digital Footprint</title>
+    <meta name="description" content="TrackFree.me helps you understand your digital footprint and take control of your privacy.">
+    <meta name="keywords" content="privacy, digital footprint, data tracking, app privacy">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -403,8 +405,8 @@
 
     <!-- Simple Chatbot Widget -->
     <div id="chatbot-widget" style="position:fixed;bottom:24px;right:24px;z-index:9999;">
-      <button id="chatbot-toggle" class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg">
-        <i class="fas fa-comment-dots"></i> <!-- Font Awesome message icon -->
+      <button id="chatbot-toggle" aria-label="Open chatbot" class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg">
+        <i class="fas fa-comment-dots"></i>
       </button>
       <div id="chatbot-box" class="hidden bg-zinc-900 text-gray-200 rounded-xl shadow-xl p-4 mt-2 w-80" style="max-height:400px;overflow-y:auto;">
         <div id="chatbot-messages" class="mb-2 text-sm" style="min-height:120px;"></div>
