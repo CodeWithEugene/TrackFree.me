@@ -136,5 +136,7 @@ TrackFree.me wouldn't be possible if it were not for:
 3. Sidney - [Github](https://github.com/mathncode-sid)
 
 > _Empowering you to take control of your digital privacy, one app at a time._
-```
 
+```
+Update: This project was first runners up in the Code4Privacy Hackathon by ISACA Abuja!
+```
