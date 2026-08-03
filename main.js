@@ -1,155 +1,51 @@
-// Mobile menu toggle
-document.getElementById('mobile-menu-button').addEventListener('click', function() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu.classList.toggle('hidden');
-});
+const state = { apps: [] };
+const aliases = { twitter: 'X (formerly Twitter)', x: 'X (formerly Twitter)', facebook: 'Facebook (Meta)' };
 
-// Close mobile menu when a link is clicked
-const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
-mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.add('hidden');
-    });
-});
+function node(tag, text, className) { const item = document.createElement(tag); if (text) item.textContent = text; if (className) item.className = className; return item; }
+function findApp(query) { const value = aliases[query.toLowerCase()] || query; return state.apps.find((app) => app.name.toLowerCase() === value.toLowerCase()) || state.apps.find((app) => app.name.toLowerCase().includes(value.toLowerCase())); }
+function riskTone(risk) { return { Low: 'low-risk', Medium: 'medium-risk', High: 'high-risk' }[risk] || ''; }
 
-// Scroll animation logic
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
+function renderApp(app) {
+  document.getElementById('app-results').classList.remove('hidden');
+  document.getElementById('app-name').textContent = app.name;
+  const risk = document.getElementById('risk-score'); risk.replaceChildren('Privacy signal: ', node('span', app.risk_score, riskTone(app.risk_score)), document.createTextNode(' — a guide, not a verdict.'));
+  document.getElementById('score-number').textContent = app.score_count;
+  document.getElementById('data-collected').replaceChildren(...app.data_collected.slice(0, 7).map((item) => node('li', item)));
+  document.getElementById('opt-out-delete').textContent = app.opt_out_or_delete;
+  document.getElementById('app-sources').replaceChildren(...app.sources.map((url, index) => { const link = node('a', `Official source ${index + 1}`); link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer'; const item = node('li'); item.append(link); return item; }));
+  document.getElementById('app-review-date').textContent = 'Check the official links for the newest policy details.';
+  document.getElementById('app-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function search() { const value = document.getElementById('app-search').value.trim(); if (!value) return; const app = findApp(value); if (app) renderApp(app); else { document.getElementById('app-results').classList.add('hidden'); document.getElementById('search-status').textContent = 'Not in the reviewed catalogue yet. Try another app or use the official privacy policy.'; } }
+function populateComparison() { for (const id of ['compare-a', 'compare-b']) { const select = document.getElementById(id); select.replaceChildren(...state.apps.map((app) => new Option(app.name, app.name))); } document.getElementById('compare-b').selectedIndex = Math.min(1, state.apps.length - 1); }
+function comparisonRow(label, value, different) { const row = node('div', '', `comparison-row${different ? ' comparison-difference' : ''}`); row.append(node('span', label), node('b', value)); return row; }
+function compare() {
+  const container = document.getElementById('compare-results');
+  const [first, second] = ['compare-a', 'compare-b'].map((id) => findApp(document.getElementById(id).value));
+  const differences = { risk: first.risk_score !== second.risk_score, score: first.score_count !== second.score_count, collection: first.data_collected.length !== second.data_collected.length, sources: first.sources.length !== second.sources.length };
+  container.replaceChildren(...[first, second].map((app, index) => {
+    const card = node('article', '', 'compare-card compare-card-enter');
+    const detail = node('div', '', 'comparison-rows');
+    detail.append(
+      comparisonRow('Privacy signal', `${app.risk_score}`, differences.risk),
+      comparisonRow('Signal score', `${app.score_count} / 10`, differences.score),
+      comparisonRow('Data areas named', `${app.data_collected.length}`, differences.collection),
+      comparisonRow('Official sources', `${app.sources.length}`, differences.sources)
+    );
+    card.append(node('p', index === 0 ? 'App A' : 'App B', 'note-label'), node('h3', app.name), detail, node('p', 'A policy summary:', 'compare-caption'), node('p', app.shared_or_sold, 'compare-summary'));
+    return card;
+  }));
+  container.classList.remove('hidden');
+  container.setAttribute('aria-live', 'polite');
+}
+function addMessage(label, content) { const messages = document.getElementById('chatbot-messages'); const row = node('div'); row.append(node('b', `${label}: `), document.createTextNode(content)); messages.append(row); messages.scrollTop = messages.scrollHeight; return row; }
 
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-            observer.unobserve(entry.target); // Stop observing once animated
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.fade-in-up, .fade-in').forEach(element => {
-    observer.observe(element);
-});
-
-// Set current year in footer
-document.getElementById("year").textContent = new Date().getFullYear();
-
-
-// Load app data from external JSON file
-let appData = [];
-
-fetch('apps.json')
-  .then(response => response.json())
-  .then(data => {
-    appData = data.apps;
-
-    function searchApp(query) {
-        const resultBox = document.getElementById("app-results");
-        const appName = document.getElementById("app-name");
-        const riskScore = document.getElementById("risk-score");
-        const dataCollected = document.getElementById("data-collected");
-        const optOut = document.getElementById("opt-out-delete");
-        const loadingSpinner = document.getElementById("loading-spinner");
-
-        // Show loading spinner and hide results
-        loadingSpinner.classList.remove("hidden");
-        appName.textContent = "";
-        riskScore.textContent = "";
-        dataCollected.innerHTML = "";
-        optOut.textContent = "";
-        resultBox.classList.remove("hidden");
-
-        setTimeout(() => {
-            // Hide loading spinner
-            loadingSpinner.classList.add("hidden");
-
-            // Case-insensitive, exact match
-            const foundApp = appData.find(app => app.name.toLowerCase() === query);
-
-            if (foundApp) {
-                // Determine color indicator and class
-                let indicator = "";
-                let riskClass = "";
-                const score = foundApp.risk_score.toLowerCase();
-                if (score.includes("low")) {
-                    indicator = "🟢";
-                    riskClass = "low-risk";
-                } else if (score.includes("medium")) {
-                    indicator = "🟡";
-                    riskClass = "medium-risk";
-                } else if (score.includes("high")) {
-                    indicator = "🔴";
-                    riskClass = "high-risk";
-                }
-
-                appName.textContent = foundApp.name;
-                riskScore.innerHTML = `<strong>Privacy Risk:</strong> <span class="${riskClass}">${foundApp.risk_score}</span> ${indicator} <span style="margin-left:8px;"><strong>Score Count:</strong> ${foundApp.score_count}</span>`;
-                dataCollected.innerHTML = foundApp.data_collected.map(item => `<li>${item}</li>`).join('');
-                optOut.textContent = foundApp.opt_out_or_delete;
-            } else {
-                appName.textContent = "App not found, coming soon";
-                riskScore.textContent = "";
-                dataCollected.innerHTML = "";
-                optOut.textContent = "";
-            }
-        }, 4000); // Simulate loading delay
-    }
-
-    const searchInput = document.getElementById("app-search");
-    const searchButton = searchInput?.parentElement.querySelector("button");
-
-    // Only search on button click
-    searchButton?.addEventListener("click", function (e) {
-        e.preventDefault();
-        const query = searchInput.value.trim().toLowerCase();
-        if (query.length > 0) {
-            searchApp(query);
-        } else {
-            document.getElementById("app-results").classList.add("hidden");
-        }
-    });
-
-    // Optional: Pressing Enter triggers search
-    searchInput?.addEventListener("keydown", function(e) {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            searchButton.click();
-        }
-    });
-  })
-  .catch(error => {
-    console.error("Error loading app data:", error);
-  });
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Chatbot toggle
-    document.getElementById('chatbot-toggle').onclick = () => {
-        document.getElementById('chatbot-box').classList.toggle('hidden');
-    };
-
-    document.getElementById('chatbot-form').onsubmit = async (e) => {
-        e.preventDefault();
-        const input = document.getElementById('chatbot-input');
-        const msg = input.value.trim();
-        if (!msg) return;
-        const messages = document.getElementById('chatbot-messages');
-        messages.innerHTML += `<div><b>You:</b> ${msg}</div>`;
-        input.value = '';
-        messages.innerHTML += `<div><i>Bot is typing...</i></div>`;
-        messages.scrollTop = messages.scrollHeight;
-
-        try {
-            const res = await fetch('http://localhost:3001/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: msg })
-            });
-            const data = await res.json();
-            messages.innerHTML += `<div><b>Bot:</b> ${data.reply}</div>`;
-        } catch (err) {
-            messages.innerHTML += `<div><b>Bot:</b> Sorry, there was an error.</div>`;
-        }
-        messages.scrollTop = messages.scrollHeight;
-    };
+document.addEventListener('DOMContentLoaded', async () => {
+  document.getElementById('year').textContent = new Date().getFullYear();
+  try { const response = await fetch('/api/apps'); state.apps = (await response.json()).apps; populateComparison(); } catch (_) { document.getElementById('search-status').textContent = 'The app catalogue is unavailable. Please refresh later.'; }
+  document.getElementById('app-search-button').addEventListener('click', search); document.getElementById('app-search').addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); search(); } }); document.querySelectorAll('.quick-app').forEach((button) => button.addEventListener('click', () => { document.getElementById('app-search').value = button.dataset.app; search(); }));
+  document.getElementById('compare-button').addEventListener('click', compare);
+  document.getElementById('compare-b').addEventListener('change', () => { if (!document.getElementById('compare-results').classList.contains('hidden')) compare(); });
+  const toggle = document.getElementById('chatbot-toggle'); toggle.addEventListener('click', () => { const box = document.getElementById('chatbot-box'); box.classList.toggle('hidden'); toggle.setAttribute('aria-expanded', String(!box.classList.contains('hidden'))); if (!box.classList.contains('hidden')) document.getElementById('chatbot-input').focus(); });
+  document.getElementById('chatbot-form').addEventListener('submit', async (event) => { event.preventDefault(); const input = document.getElementById('chatbot-input'); const message = input.value.trim(); if (!message) return; addMessage('You', message); input.value = ''; const pending = addMessage('TrackFree', 'Thinking…'); try { const result = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message }) }); const data = await result.json(); pending.replaceWith(addMessage('TrackFree', data.reply || 'Sorry, something went wrong.')); } catch (_) { pending.replaceWith(addMessage('TrackFree', 'Sorry, the assistant is unavailable right now.')); } });
 });
