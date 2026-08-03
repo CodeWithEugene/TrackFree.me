@@ -166,35 +166,6 @@
       ]
     },
     {
-      "name": "Telegram",
-      "data_collected": [
-        "Phone number, screen name, profile picture, and optional bio/about info",
-        "Email address (for 2FA recovery or login codes if provided)",
-        "Birthday (optional, with visibility control)",
-        "Cloud chat content (messages, media, files, paid posts)",
-        "Metadata: IP address, device info, username changes (up to 12 months)",
-        "Synced contacts (name and phone number only)",
-        "App and message usage analytics (aggregated and anonymized)",
-        "Live location and location shares (if enabled)",
-        "Secret chats (end-to-end encrypted, not stored on servers)",
-        "Data shared through bots, including messages and interaction metadata",
-        "Payment and shipping info (via third-party providers only)",
-        "Voice/video messages for transcription (if user-enabled, shared with Google)",
-        "Text translation requests (shared with Google if used)",
-        "Cookies (only for Telegram Web functionality)"
-      ],
-      "shared_or_sold": "Telegram shares data: (1) with other users you communicate with; (2) with Telegram group companies (e.g., in the British Virgin Islands and Dubai); (3) with law enforcement under valid legal orders (e.g., IP and phone number for criminal investigations); (4) with Google LLC for translation or transcription features, only when users enable them. Telegram does not sell personal data or use it for ad targeting.",
-      "risk_score": "Moderate",
-      "score_count": 5,
-      "opt_out_or_delete": "To delete your Telegram account: visit the deactivation page at https://my.telegram.org/auth. You can also manage and delete data like synced contacts, payment info, chat history, and disable features in Settings > Privacy & Security > Data Settings. Inactive accounts are automatically deleted after 18 months by default (adjustable).",
-      "sources": [
-        "https://telegram.org/privacy",
-        "https://core.telegram.org/faq",
-        "https://core.telegram.org/mtproto",
-        "https://t.me/transparency"
-      ]
-    },
-    {
       "name": "Reddit",
       "data_collected": [
         "Username (public), email address, and password (if applicable)",
